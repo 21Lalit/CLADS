@@ -1,28 +1,48 @@
 # CLADS
 
-**Closed-Loop Autonomous Defense System** is a deployable research MVP for the
-Detect → Analyze → Respond → Adapt cyber-defense cycle. It turns simulated
-network flows into contextual risk scores, explainable multi-agent traces, and
-human-governed response recommendations.
+CLADS is a closed-loop autonomous cyber-defense platform that turns network
+signals into contextual risk intelligence, governed response decisions, and
+continuous adaptation.
 
-> Safety and research scope: the public build is dry-run only. It does not modify
-> host firewall rules. Its deterministic scoring engine is an explainable baseline;
-> it does **not** claim to be a trained GraphSAGE or PPO implementation. Those
-> models remain planned empirical work from the accompanying research proposal.
+## Platform capabilities
 
-## What works
+- Hybrid threat scoring across 30 attack profiles and nine threat families
+- Geographic visitor-node intelligence with historical event correlation
+- Graph-based entity, service, location, and behavior analysis
+- Policy-constrained autonomous response selection
+- Human approval workflow for high-impact actions
+- Reward-driven action utility and adaptation history
+- Complete Detect → Analyze → Decide → Respond → Adapt evidence trail
+- Secured administration with rate limiting and expiring signed sessions
+- Persistent Cloudflare D1 intelligence and a responsive GitHub Pages console
 
-- Five-stage agent trace: Detection, Graph, Decision, Response, Learning
-- Persistent SQLite telemetry and aggregate metrics
-- Human-approval state for high-impact actions
-- Responsive dashboard and OpenAPI documentation
-- One-process deployment suitable for Render's free web service
-- Input validation, safe HTML rendering, health check, and API tests
-- Five-view interactive research console: command center, attack laboratory,
-  policy control plane, autonomous learning, and closed-loop evidence
-- 30 extensible attack profiles across nine major network-threat families
-- Browser-rendered risk history, entity topology, policy utility, approval queue,
-  adaptation log, and per-event five-stage evidence
+## Privacy and security
+
+Visitor public IP addresses are returned only to the originating browser for
+source-aware analysis. CLADS stores an HMAC-derived node identity instead of the
+raw IP. Public intelligence exposes approximate, rounded location data and never
+returns raw addresses. Shared visit and event records expire after 30 days.
+
+Administration is verified by the Cloudflare control plane. Credentials are held
+in encrypted Worker secrets, failed logins are rate-limited, and signed sessions
+expire after 30 minutes. The local credential file is excluded from Git.
+
+## Architecture
+
+```text
+GitHub Pages console
+        │
+        ▼
+Cloudflare Worker ── identity, policy, admin authorization
+        │
+        ▼
+Cloudflare D1 ────── visitor nodes, threat events, correlations
+```
+
+The browser analysis engine handles scoring, graph context, policy evaluation,
+action selection, evidence rendering, and local learning state. The edge control
+plane adds persistent cross-visitor intelligence, geographic context, and secure
+administration.
 
 ## Run locally
 
@@ -33,67 +53,31 @@ pip install -r requirements-dev.txt
 uvicorn app.main:app --reload
 ```
 
-Open <http://localhost:8000>. API documentation is at `/docs`.
-
-Run tests:
+Open <http://localhost:8000>. Run API tests with:
 
 ```powershell
-pytest -q
+python -m pytest -q
 ```
 
-## Deploy on Render
+## Deployment
 
-1. Push this directory to a GitHub repository.
-2. In Render, choose **New → Blueprint** and select the repository.
-3. Render reads `render.yaml`, builds the Docker image, and checks `/api/health`.
+The customer console deploys from `main` through `.github/workflows/pages.yml`.
+The intelligence control plane is in `worker/` and deploys with:
 
-The free Render filesystem is ephemeral, so demo events may reset after a restart.
-For durable telemetry, attach a persistent disk (paid) and set `CLADS_DB` to its
-mount path, or replace SQLite with managed PostgreSQL.
-
-## Free GitHub Pages demonstration
-
-The primary public demo runs entirely in each visitor's browser. It uses GitHub
-Pages and GitHub Actions only, sends no actual network traffic, and needs no paid
-server or database. Visitors can simulate HTTPS, SSH, DNS, database, and ICMP
-requests with normal, scan, brute-force, web-attack, botnet, and DDoS behavior.
-The latest 50 simulated events are stored locally in the visitor's browser.
-
-Shared demonstration intelligence is backed by a free Cloudflare Worker and D1.
-Visitor IP addresses are HMAC-pseudonymized at the edge and never stored raw or
-returned to clients. Approximate coordinates are rounded, and only actions
-performed inside the simulation are recorded and correlated. The Worker source
-and database schema are in `worker/`.
-
-Push `main`, then set **Repository Settings → Pages → Source** to **GitHub
-Actions**. The included workflow publishes the demonstration automatically.
-
-## Architecture
-
-```text
-Network flow → Detection → Graph context → Decision → Response gate
-                    ↑                              │
-                    └──────── feedback/adapt ──────┘
+```powershell
+cd worker
+npm install
+npx wrangler deploy
 ```
 
-The current graph score approximates relationship context using repeat-source
-history and flow characteristics. A production research phase should replace the
-baseline with trained CNN/Random Forest detection, GraphSAGE embeddings, and a PPO
-policy, evaluated independently on CICIDS2017 and NSL-KDD without data leakage.
+Both components operate within free GitHub Pages, Cloudflare Workers, and D1
+allocations for normal showcase traffic.
 
-## API
+## Responsible operation
 
-- `GET /api/health` — service readiness
-- `POST /api/simulate` — execute one closed-loop simulation
-- `GET /api/events` — recent telemetry
-- `GET /api/metrics` — aggregate dashboard metrics
-- `POST /api/actions/{id}/approve` — approve an action in dry-run mode
-
-## Responsible use
-
-CLADS is defensive research software. Keep enforcement behind explicit operator
-approval, validate policies in an isolated environment, and never run attack
-simulations against systems you do not own or have permission to test.
+Use CLADS only with networks and systems you own or are authorized to assess.
+Keep active enforcement behind operator approval, rollback controls, and audited
+policies.
 
 ## License
 

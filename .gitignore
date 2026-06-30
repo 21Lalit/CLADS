@@ -11,3 +11,4 @@ venv/
 .vscode/
 worker/node_modules/
 worker/.wrangler/
+admin-credentials.local.txt

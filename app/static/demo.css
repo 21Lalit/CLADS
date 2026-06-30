@@ -1,3 +1,24 @@
 /* Deployment and privacy notice overrides. */
 .privacy-notice{position:fixed;z-index:30;right:18px;bottom:18px;width:min(560px,calc(100% - 36px));padding:14px;background:#10231e;border:1px solid var(--cyan);box-shadow:0 12px 45px #000;display:flex;gap:15px;align-items:center}
 .privacy-notice.hide{display:none}.privacy-notice b{display:block;color:var(--cyan);font:9px monospace;letter-spacing:.12em}.privacy-notice span{display:block;color:var(--muted);font-size:11px;margin-top:3px}.privacy-notice button{white-space:nowrap}
+
+/* CLADS customer-facing visual system */
+:root{--bg:#070817;--panel:#101329;--panel2:#171b38;--line:#29315d;--ink:#f4f7ff;--muted:#9da8ca;--acid:#67f7d4;--cyan:#62c7ff;--red:#ff5f7e;--amber:#ffca67}
+body{background-color:var(--bg);background-image:radial-gradient(circle at 88% 8%,rgba(112,72,255,.18),transparent 31%),radial-gradient(circle at 32% 88%,rgba(0,216,194,.10),transparent 28%),linear-gradient(rgba(98,199,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(98,199,255,.025) 1px,transparent 1px)}
+.sidebar{background:linear-gradient(180deg,#0d1025 0%,#090b1b 100%);box-shadow:14px 0 45px rgba(0,0,0,.22)}
+.sidebar nav a,.card,.metric,.hero-strip,.proof-stage,input,select,.mode,.scope-note,.card-head b,.privacy-notice{border-radius:14px}
+.sidebar nav a.active{border-left:1px solid #8a71ff;background:linear-gradient(90deg,rgba(105,88,255,.24),rgba(60,205,255,.08));box-shadow:inset 0 0 22px rgba(112,87,255,.08)}
+.shell>header{background:rgba(7,8,23,.80);border-color:rgba(116,132,202,.22)}
+.card,.metric,.hero-strip,.proof-stage{border-color:rgba(106,126,205,.28);background:linear-gradient(145deg,rgba(20,24,52,.97),rgba(11,14,34,.97));box-shadow:0 12px 35px rgba(0,0,0,.16)}
+.card:hover,.metric:hover{border-color:rgba(104,199,255,.48);transform:translateY(-1px);transition:.2s ease}
+.hero-strip{background:radial-gradient(circle at 81%,rgba(112,75,255,.35),transparent 32%),radial-gradient(circle at 72%,rgba(42,211,214,.13),transparent 46%),linear-gradient(145deg,#121633,#0b0e23)}
+.primary{border-radius:12px;background:linear-gradient(110deg,#67f7d4,#62c7ff 55%,#9d78ff);box-shadow:0 9px 28px rgba(80,191,255,.24);transition:.2s ease}.primary:hover{filter:brightness(1.08);transform:translateY(-1px);box-shadow:0 12px 34px rgba(104,113,255,.35)}
+.ghost{border-radius:10px;border-color:#3c4c86;color:#78d8ff;background:rgba(75,94,167,.08)}.ghost:hover{background:rgba(92,112,212,.18);border-color:#69ccff}.danger{color:#ff7690;border-color:#7b3851}
+input,select{background:#0b0e22;border-color:#303a71;padding:13px}input:focus,select:focus{border-color:#65d7ff;box-shadow:0 0 0 3px rgba(98,199,255,.12)}
+.bar{border-radius:10px;background:#20294e;overflow:hidden}.bar i{background:linear-gradient(90deg,#5ee6d2,#66bfff,#9d78ff)}
+.attack-item{border-radius:10px;margin:3px 0}.attack-item:hover,.attack-item.active{border-color:#5366ae;background:linear-gradient(90deg,rgba(85,104,201,.22),rgba(110,71,213,.12))}
+.agent-step>i{border-radius:8px;background:rgba(103,247,212,.08)}.toggle{box-shadow:inset 0 1px 4px rgba(0,0,0,.4)}.toggle.on{background:linear-gradient(90deg,#5ee6d2,#7574ff)}
+.proof-stage.active{border-color:#68d7ff;box-shadow:0 12px 35px rgba(97,105,255,.22)}
+.privacy-notice{background:linear-gradient(135deg,#151a3b,#10162d);border-color:#627be0}
+.admin-shell{min-height:570px;display:grid;place-items:center}.admin-login-card{width:min(460px,100%);padding:36px}.admin-login-card label{display:block;color:var(--muted);font:10px monospace;margin:16px 0}.admin-login-card .primary{margin-top:8px}.admin-shield{width:62px;height:62px;border-radius:18px;display:grid;place-items:center;font-size:28px;color:var(--acid);background:linear-gradient(145deg,rgba(103,247,212,.16),rgba(123,94,255,.18));border:1px solid #455897;margin-bottom:20px}.admin-error{min-height:18px;color:var(--red);font:10px monospace;text-align:center}.admin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.admin-grid .card{min-height:210px}.admin-grid button{margin-top:15px}.critical-zone{border-color:rgba(255,95,126,.38)}
+@media(max-width:850px){.admin-grid{grid-template-columns:1fr}}

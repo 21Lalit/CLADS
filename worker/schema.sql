@@ -11,3 +11,6 @@ CREATE TABLE IF NOT EXISTS threat_events (
 );
 CREATE INDEX IF NOT EXISTS idx_events_visitor ON threat_events(visitor_id, created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_events_created ON threat_events(created_at DESC);
+CREATE TABLE IF NOT EXISTS admin_attempts (
+  visitor_id TEXT PRIMARY KEY, failures INTEGER NOT NULL DEFAULT 0, last_attempt TEXT NOT NULL
+);
