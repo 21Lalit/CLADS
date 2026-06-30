@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="CLADS — a closed-loop autonomous cyber-defense research platform.">
+  <title>CLADS · Autonomous Defense</title>
+  <link rel="stylesheet" href="static/styles.css">
+  <link rel="stylesheet" href="static/demo.css">
+</head>
+<body>
+  <header><a class="brand" href="/">CLADS<span>◆</span></a><div class="status"><i></i> SYSTEM ONLINE · DRY RUN</div></header>
+  <main>
+    <section class="hero">
+      <div><p class="eyebrow">CLOSED-LOOP SECURITY INTELLIGENCE</p><h1>Detect. Analyze.<br><em>Respond. Adapt.</em></h1>
+      <p class="lede">A research-grade control loop that turns network signals into explainable, human-governed defense actions.</p></div>
+      <div class="loop" aria-label="closed loop agents">
+        <div class="core">CLADS<small>CONTROL CORE</small></div>
+        <span class="n n1">01<small>DETECT</small></span><span class="n n2">02<small>ANALYZE</small></span>
+        <span class="n n3">03<small>RESPOND</small></span><span class="n n4">04<small>ADAPT</small></span>
+      </div>
+    </section>
+    <section class="metrics" id="metrics"></section>
+    <section class="workspace">
+      <div class="panel simulator"><div class="panel-head"><div><span>THREAT LAB</span><h2>Inject a network flow</h2></div><b>SIMULATION</b></div>
+        <form id="flow-form">
+          <div class="presets" aria-label="scenario presets"><button type="button" data-preset="benign">NORMAL</button><button type="button" data-preset="port_scan">SCAN</button><button type="button" data-preset="brute_force">BRUTE FORCE</button><button type="button" data-preset="ddos">DDOS</button></div>
+          <div class="grid"><label>Request type<select name="request_type"><option value="https">HTTPS / Web</option><option value="ssh">SSH login</option><option value="dns">DNS query</option><option value="database">Database</option><option value="icmp">ICMP ping</option></select></label><label>Behavior<select name="attack_type"><option value="benign">Benign traffic</option><option value="port_scan">Port scan</option><option value="brute_force">Brute force</option><option value="web_attack">Web attack</option><option value="botnet">Botnet beacon</option><option value="ddos">DDoS burst</option></select></label></div>
+          <div class="grid"><label>Source IP<input name="source_ip" value="10.0.0.42" required></label><label>Destination IP<input name="destination_ip" value="10.0.0.10" required></label></div>
+          <div class="grid"><label>Port<input name="destination_port" type="number" value="443" min="1" max="65535"></label><label>Request volume<input name="packets" type="number" value="1200" min="1"></label></div>
+          <button type="submit">RUN DEFENSE LOOP <span>→</span></button>
+        </form>
+      </div>
+      <div class="panel trace"><div class="panel-head"><div><span>AGENT TRACE</span><h2>Latest reasoning</h2></div><b id="risk-badge">IDLE</b></div><div id="trace" class="empty">Inject a flow to inspect the five-agent decision path.</div></div>
+    </section>
+    <section class="panel events"><div class="panel-head"><div><span>TELEMETRY</span><h2>Recent defense events</h2></div><button type="button" id="reset-demo" class="link-button">RESET DEMO</button></div><div class="table-wrap"><table><thead><tr><th>TIME</th><th>REQUEST</th><th>SOURCE</th><th>BEHAVIOR</th><th>RISK</th><th>DECISION</th><th>STATE</th></tr></thead><tbody id="events"><tr><td colspan="7" class="empty">No events yet.</td></tr></tbody></table></div></section>
+  </main>
+  <footer><span>CLADS / RESEARCH MVP</span><span>HUMAN-GOVERNED · EXPLAINABLE · SAFE BY DEFAULT</span></footer>
+  <script src="static/app.js"></script>
+</body>
+</html>
