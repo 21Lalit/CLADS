@@ -1,5 +1,1 @@
-.presets{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:18px}
-.presets button,.link-button{background:transparent;border:1px solid #355048;color:var(--muted);font:9px monospace;padding:9px 4px}
-.presets button:hover,.presets button.active{border-color:var(--acid);color:var(--acid)}
-.link-button{width:auto;color:var(--cyan)}
-@media(max-width:560px){.presets{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}}
+/* Reserved for deployment-specific overrides. */

@@ -1,41 +1,40 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="CLADS — a closed-loop autonomous cyber-defense research platform.">
-  <title>CLADS · Autonomous Defense</title>
-  <link rel="stylesheet" href="static/styles.css">
-  <link rel="stylesheet" href="static/demo.css">
-</head>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Interactive CLADS autonomous cyber-defense research demonstration"><title>CLADS · Autonomous Defense</title><link rel="stylesheet" href="static/styles.css"><link rel="stylesheet" href="static/demo.css"></head>
 <body>
-  <header><a class="brand" href="/">CLADS<span>◆</span></a><div class="status"><i></i> SYSTEM ONLINE · DRY RUN</div></header>
-  <main>
-    <section class="hero">
-      <div><p class="eyebrow">CLOSED-LOOP SECURITY INTELLIGENCE</p><h1>Detect. Analyze.<br><em>Respond. Adapt.</em></h1>
-      <p class="lede">A research-grade control loop that turns network signals into explainable, human-governed defense actions.</p></div>
-      <div class="loop" aria-label="closed loop agents">
-        <div class="core">CLADS<small>CONTROL CORE</small></div>
-        <span class="n n1">01<small>DETECT</small></span><span class="n n2">02<small>ANALYZE</small></span>
-        <span class="n n3">03<small>RESPOND</small></span><span class="n n4">04<small>ADAPT</small></span>
-      </div>
-    </section>
-    <section class="metrics" id="metrics"></section>
-    <section class="workspace">
-      <div class="panel simulator"><div class="panel-head"><div><span>THREAT LAB</span><h2>Inject a network flow</h2></div><b>SIMULATION</b></div>
-        <form id="flow-form">
-          <div class="presets" aria-label="scenario presets"><button type="button" data-preset="benign">NORMAL</button><button type="button" data-preset="port_scan">SCAN</button><button type="button" data-preset="brute_force">BRUTE FORCE</button><button type="button" data-preset="ddos">DDOS</button></div>
-          <div class="grid"><label>Request type<select name="request_type"><option value="https">HTTPS / Web</option><option value="ssh">SSH login</option><option value="dns">DNS query</option><option value="database">Database</option><option value="icmp">ICMP ping</option></select></label><label>Behavior<select name="attack_type"><option value="benign">Benign traffic</option><option value="port_scan">Port scan</option><option value="brute_force">Brute force</option><option value="web_attack">Web attack</option><option value="botnet">Botnet beacon</option><option value="ddos">DDoS burst</option></select></label></div>
-          <div class="grid"><label>Source IP<input name="source_ip" value="10.0.0.42" required></label><label>Destination IP<input name="destination_ip" value="10.0.0.10" required></label></div>
-          <div class="grid"><label>Port<input name="destination_port" type="number" value="443" min="1" max="65535"></label><label>Request volume<input name="packets" type="number" value="1200" min="1"></label></div>
-          <button type="submit">RUN DEFENSE LOOP <span>→</span></button>
-        </form>
-      </div>
-      <div class="panel trace"><div class="panel-head"><div><span>AGENT TRACE</span><h2>Latest reasoning</h2></div><b id="risk-badge">IDLE</b></div><div id="trace" class="empty">Inject a flow to inspect the five-agent decision path.</div></div>
-    </section>
-    <section class="panel events"><div class="panel-head"><div><span>TELEMETRY</span><h2>Recent defense events</h2></div><button type="button" id="reset-demo" class="link-button">RESET DEMO</button></div><div class="table-wrap"><table><thead><tr><th>TIME</th><th>REQUEST</th><th>SOURCE</th><th>BEHAVIOR</th><th>RISK</th><th>DECISION</th><th>STATE</th></tr></thead><tbody id="events"><tr><td colspan="7" class="empty">No events yet.</td></tr></tbody></table></div></section>
-  </main>
-  <footer><span>CLADS / RESEARCH MVP</span><span>HUMAN-GOVERNED · EXPLAINABLE · SAFE BY DEFAULT</span></footer>
-  <script src="static/app.js"></script>
-</body>
-</html>
+<aside class="sidebar"><a class="brand" href="#overview">CLADS<span>◆</span></a><p class="product">AUTONOMOUS DEFENSE<br>RESEARCH CONSOLE</p><nav><a href="#overview" data-route="overview"><i>⌂</i>Command Center</a><a href="#attack" data-route="attack"><i>⚡</i>Attack Lab</a><a href="#policies" data-route="policies"><i>⚖</i>Policies</a><a href="#learning" data-route="learning"><i>◎</i>Autonomous Work</a><a href="#loop" data-route="loop"><i>↻</i>Closed-Loop Proof</a></nav><div class="side-foot"><span><b class="live-dot"></b> BROWSER ENGINE ACTIVE</span><small>DRY-RUN · NO REAL TRAFFIC</small></div></aside>
+<div class="shell"><header><div><p class="crumb">CLADS / <span id="route-name">COMMAND CENTER</span></p><h1 id="page-title">Command Center</h1></div><div class="header-actions"><span class="mode">RESEARCH BASELINE</span><button id="reset-all" class="ghost danger">RESET SYSTEM</button></div></header>
+<main>
+<section class="view active" id="overview-view">
+  <div class="hero-strip"><div><p class="eyebrow">CLOSED-LOOP CYBER DEFENSE</p><h2>From signal to response<br><em>in one observable loop.</em></h2><p>Hybrid detection, graph context, policy decisions, governed response, and outcome-driven adaptation.</p></div><div class="loop-mini"><div class="loop-core">CLADS<small>ONLINE</small></div><span class="lm l1">DETECT</span><span class="lm l2">ANALYZE</span><span class="lm l3">RESPOND</span><span class="lm l4">ADAPT</span></div></div>
+  <div class="metric-grid" id="metrics"></div>
+  <div class="dashboard-grid"><article class="card wide"><div class="card-head"><div><span>RISK OBSERVABILITY</span><h3>Risk over time</h3></div><b>LAST 20 EVENTS</b></div><canvas id="risk-chart" height="180"></canvas></article><article class="card"><div class="card-head"><div><span>THREAT DISTRIBUTION</span><h3>Attack families</h3></div></div><div id="family-bars"></div></article></div>
+  <article class="card"><div class="card-head"><div><span>LIVE TELEMETRY</span><h3>Latest defense events</h3></div><button class="ghost" data-goto="attack">INJECT TRAFFIC →</button></div><div class="table-wrap"><table><thead><tr><th>TIME</th><th>ATTACK</th><th>SOURCE</th><th>RISK</th><th>DECISION</th><th>OUTCOME</th></tr></thead><tbody id="overview-events"></tbody></table></div></article>
+</section>
+
+<section class="view" id="attack-view">
+  <div class="section-intro"><div><p class="eyebrow">CONTROLLED ADVERSARY EMULATION</p><h2>Attack Laboratory</h2><p>Select a representative network attack, tune the flow, and observe every agent’s reasoning. The simulation sends no packets.</p></div><div class="scope-note">30 ATTACK PROFILES<br><small>9 THREAT FAMILIES</small></div></div>
+  <div class="attack-layout"><article class="card attack-catalog"><div class="search-row"><input id="attack-search" placeholder="Search attack catalog…"><select id="family-filter"><option value="all">All families</option></select></div><div id="attack-list"></div></article>
+  <article class="card attack-config"><div class="card-head"><div><span>SELECTED SCENARIO</span><h3 id="selected-name">Benign baseline</h3></div><b id="selected-severity">INFO</b></div><p id="selected-description" class="muted"></p><form id="attack-form"><div class="form-grid"><label>Source IP<input name="source_ip" value="10.0.0.42" required></label><label>Target IP<input name="destination_ip" value="10.0.0.10" required></label><label>Target service<select name="service"><option value="https">HTTPS · 443</option><option value="ssh">SSH · 22</option><option value="dns">DNS · 53</option><option value="smb">SMB · 445</option><option value="rdp">RDP · 3389</option><option value="database">PostgreSQL · 5432</option></select></label><label>Request volume<input name="volume" type="number" value="1200" min="1" max="1000000"></label><label>Duration (ms)<input name="duration" type="number" value="850" min="1"></label><label>Prior observations<input name="history" type="number" value="0" min="0" max="20"></label></div><button class="primary" type="submit">EXECUTE CLOSED-LOOP ANALYSIS <span>→</span></button></form></article></div>
+  <article class="card result-card"><div class="card-head"><div><span>AGENT REASONING</span><h3>Decision trace</h3></div><b id="risk-badge">AWAITING FLOW</b></div><div id="agent-trace" class="trace-placeholder">Choose an attack and execute the analysis.</div></article>
+</section>
+
+<section class="view" id="policies-view">
+  <div class="section-intro"><div><p class="eyebrow">HUMAN-GOVERNED RESPONSE</p><h2>Policy Control Plane</h2><p>Policies constrain autonomous decisions. High-impact actions always require approval in this research build.</p></div><button id="restore-policies" class="ghost">RESTORE DEFAULTS</button></div>
+  <div class="policy-grid" id="policy-list"></div>
+  <article class="card"><div class="card-head"><div><span>APPROVAL QUEUE</span><h3>Pending high-impact responses</h3></div><b id="queue-count">0 PENDING</b></div><div id="approval-queue"></div></article>
+</section>
+
+<section class="view" id="learning-view">
+  <div class="section-intro"><div><p class="eyebrow">ADAPTATION OBSERVABILITY</p><h2>Autonomous Work</h2><p>See how feedback updates response preferences and how communication relationships form a contextual threat graph.</p></div><span class="mode">EXPLAINABLE SURROGATE</span></div>
+  <div class="metric-grid" id="learning-metrics"></div>
+  <div class="dashboard-grid"><article class="card wide"><div class="card-head"><div><span>COMMUNICATION GRAPH</span><h3>Entity risk topology</h3></div><b>NODES + OBSERVED EDGES</b></div><canvas id="graph-canvas" height="330"></canvas></article><article class="card"><div class="card-head"><div><span>POLICY PREFERENCES</span><h3>Action utility</h3></div></div><div id="utility-bars"></div></article></div>
+  <article class="card"><div class="card-head"><div><span>LEARNING LOG</span><h3>Adaptation history</h3></div><b>REWARD FEEDBACK</b></div><div id="learning-log"></div></article>
+</section>
+
+<section class="view" id="loop-view">
+  <div class="section-intro"><div><p class="eyebrow">VERIFIABLE CONTROL CYCLE</p><h2>Closed-Loop Evidence</h2><p>Every event carries inputs, intermediate scores, action constraints, outcome, and feedback. Replay the latest cycle below.</p></div><button id="demo-loop" class="primary compact">RUN PROOF SCENARIO</button></div>
+  <div class="proof-loop"><div class="proof-stage" data-stage="detect"><b>01</b><span>DETECT</span><small>Hybrid classifier score</small></div><i>→</i><div class="proof-stage" data-stage="analyze"><b>02</b><span>ANALYZE</span><small>Graph context enrichment</small></div><i>→</i><div class="proof-stage" data-stage="decide"><b>03</b><span>DECIDE</span><small>Policy-constrained action</small></div><i>→</i><div class="proof-stage" data-stage="respond"><b>04</b><span>RESPOND</span><small>Governed enforcement</small></div><i>→</i><div class="proof-stage" data-stage="adapt"><b>05</b><span>ADAPT</span><small>Reward and utility update</small></div></div>
+  <article class="card evidence"><div class="card-head"><div><span>EVENT EVIDENCE</span><h3 id="evidence-title">No cycle selected</h3></div><b id="evidence-id">—</b></div><div id="evidence-grid" class="evidence-grid"><p class="trace-placeholder">Run a proof scenario or inject an attack first.</p></div></article>
+  <div class="research-map"><article class="card"><span>PAPER COMPONENT</span><h3>Hybrid IDS</h3><p>CNN + Random Forest design represented here by an explainable deterministic surrogate score.</p></article><article class="card"><span>PAPER COMPONENT</span><h3>Graph Intelligence</h3><p>GraphSAGE design represented by repeat-entity, service, and neighborhood context features.</p></article><article class="card"><span>PAPER COMPONENT</span><h3>PPO Response</h3><p>PPO design represented by reward-updated action utilities under hard safety policies.</p></article></div>
+</section>
+</main><footer><span>CLADS · CLOSED-LOOP AUTONOMOUS DEFENSE SYSTEM</span><span>FREE STATIC RESEARCH DEMONSTRATION · DATA STAYS IN YOUR BROWSER</span></footer></div>
+<script src="static/app.js"></script></body></html>

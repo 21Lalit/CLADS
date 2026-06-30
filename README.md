@@ -18,6 +18,11 @@ human-governed response recommendations.
 - Responsive dashboard and OpenAPI documentation
 - One-process deployment suitable for Render's free web service
 - Input validation, safe HTML rendering, health check, and API tests
+- Five-view interactive research console: command center, attack laboratory,
+  policy control plane, autonomous learning, and closed-loop evidence
+- 30 extensible attack profiles across nine major network-threat families
+- Browser-rendered risk history, entity topology, policy utility, approval queue,
+  adaptation log, and per-event five-stage evidence
 
 ## Run locally
 
