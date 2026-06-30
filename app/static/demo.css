@@ -1,1 +1,3 @@
-/* Reserved for deployment-specific overrides. */
+/* Deployment and privacy notice overrides. */
+.privacy-notice{position:fixed;z-index:30;right:18px;bottom:18px;width:min(560px,calc(100% - 36px));padding:14px;background:#10231e;border:1px solid var(--cyan);box-shadow:0 12px 45px #000;display:flex;gap:15px;align-items:center}
+.privacy-notice.hide{display:none}.privacy-notice b{display:block;color:var(--cyan);font:9px monospace;letter-spacing:.12em}.privacy-notice span{display:block;color:var(--muted);font-size:11px;margin-top:3px}.privacy-notice button{white-space:nowrap}

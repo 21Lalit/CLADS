@@ -22,7 +22,7 @@ jobs:
         run: |
           mkdir -p _site/static
           cp app/static/index.html _site/index.html
-          cp app/static/styles.css app/static/demo.css app/static/app.js _site/static/
+          cp app/static/styles.css app/static/demo.css app/static/config.js app/static/app.js _site/static/
           touch _site/.nojekyll
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

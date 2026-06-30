@@ -9,4 +9,5 @@ venv/
 .DS_Store
 .idea/
 .vscode/
-
+worker/node_modules/
+worker/.wrangler/

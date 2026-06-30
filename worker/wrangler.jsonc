@@ -1,0 +1,8 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "clads-intel",
+  "main": "src/index.js",
+  "compatibility_date": "2026-06-01",
+  "observability": { "enabled": true },
+  "d1_databases": [{ "binding": "DB", "database_name": "clads-intel", "database_id": "321d2302-3455-4d68-9361-2b2a09ec70b4" }]
+}

@@ -59,6 +59,12 @@ server or database. Visitors can simulate HTTPS, SSH, DNS, database, and ICMP
 requests with normal, scan, brute-force, web-attack, botnet, and DDoS behavior.
 The latest 50 simulated events are stored locally in the visitor's browser.
 
+Shared demonstration intelligence is backed by a free Cloudflare Worker and D1.
+Visitor IP addresses are HMAC-pseudonymized at the edge and never stored raw or
+returned to clients. Approximate coordinates are rounded, and only actions
+performed inside the simulation are recorded and correlated. The Worker source
+and database schema are in `worker/`.
+
 Push `main`, then set **Repository Settings → Pages → Source** to **GitHub
 Actions**. The included workflow publishes the demonstration automatically.
 
