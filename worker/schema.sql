@@ -14,3 +14,8 @@ CREATE INDEX IF NOT EXISTS idx_events_created ON threat_events(created_at DESC);
 CREATE TABLE IF NOT EXISTS admin_attempts (
   visitor_id TEXT PRIMARY KEY, failures INTEGER NOT NULL DEFAULT 0, last_attempt TEXT NOT NULL
 );
+CREATE TABLE IF NOT EXISTS access_blocks (
+  visitor_id TEXT PRIMARY KEY, blocked_at TEXT NOT NULL, expires_at TEXT NOT NULL,
+  reason TEXT NOT NULL, trigger_event_id TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_blocks_expiry ON access_blocks(expires_at);
