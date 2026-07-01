@@ -19,3 +19,9 @@ CREATE TABLE IF NOT EXISTS access_blocks (
   reason TEXT NOT NULL, trigger_event_id TEXT
 );
 CREATE INDEX IF NOT EXISTS idx_blocks_expiry ON access_blocks(expires_at);
+CREATE TABLE IF NOT EXISTS enforcement_history (
+  id INTEGER PRIMARY KEY AUTOINCREMENT, visitor_id TEXT NOT NULL,
+  blocked_at TEXT NOT NULL, expires_at TEXT NOT NULL, reason TEXT NOT NULL,
+  trigger_event_id TEXT, released_at TEXT, release_type TEXT NOT NULL DEFAULT 'automatic'
+);
+CREATE INDEX IF NOT EXISTS idx_enforcement_visitor ON enforcement_history(visitor_id, blocked_at DESC);
